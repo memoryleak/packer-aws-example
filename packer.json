@@ -1,0 +1,17 @@
+{
+  "builders": [
+    {
+      "type": "amazon-ebs",
+      "region": "{{ env `bamboo_REGION` }}",
+      "source_ami": "{{ env `bamboo_BASE_AMI` }}",
+      "instance_type": "t2.micro",
+      "ami_name": "{{ env `bamboo_AMI_NAME` }} {{timestamp}}"
+    }
+  ],
+  "provisioners": [
+    {
+      "type": "shell",
+      "inline": [ "yum update -y"]
+    }
+  ]
+}
